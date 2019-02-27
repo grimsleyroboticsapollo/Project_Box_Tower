@@ -16,23 +16,21 @@ public class RobotMap {
     // public static int rangefinderPort = 1;
     // public static int rangefinderModule = 1;
 
-	public static int FL_STEER = 4; //front left
-	public static int FR_STEER = 5; //front right
-	public static int BL_STEER = 6; //back left
-	public static int BR_STEER = 7;	//back right
+	// Steering/"Swerve" Motors
+	public static int FL_STEER = 8; //front left
+	public static int FR_STEER = 9; //front right
+	public static int BL_STEER = 10; //back left
+	public static int BR_STEER = 11; //back right
 	
-	public static int FL_DRIVE = 0; //front left
-	public static int FR_DRIVE = 1; // front right
-	public static int BL_DRIVE = 2; // back left
-	public static int BR_DRIVE = 3; //back right
+	// Drive Motors
+	public static int FL_DRIVE = 4; //front left
+	public static int FR_DRIVE = 5; // front right
+	public static int BL_DRIVE = 6; // back left
+	public static int BR_DRIVE = 7; //back right
 
-	public static int FL_ENCODER = 0; //front left
-	public static int FR_ENCODER = 1; // front right
-	public static int BL_ENCODER = 2; // back left
-	public static int BR_ENCODER = 3; // back right
-	
-	//Climber
-	
-	public static int DC_MOTOR_1 = 8;
-	public static int DC_MOTOR_2 = 9;
+	// Encoders For Drive Motors
+	public static int FL_ENCODER = 4; //front left
+	public static int FR_ENCODER = 5; // front right
+	public static int BL_ENCODER = 6; // back left
+	public static int BR_ENCODER = 7; // back right
 }

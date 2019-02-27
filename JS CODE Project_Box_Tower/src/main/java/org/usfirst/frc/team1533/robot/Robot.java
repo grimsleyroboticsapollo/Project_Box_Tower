@@ -1,5 +1,5 @@
 
-package org.usfirst.frc.team3215.robot;
+package org.usfirst.frc.team1533.robot;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team3215.robot.RobotMap;
 import edu.wpi.first.cameraserver.CameraServer;
 
-import org.usfirst.frc.team3215.robot.subsystems.AbsoluteEncoder;
-import org.usfirst.frc.team3215.robot.subsystems.SwerveDrive;
-import org.usfirst.frc.team3215.robot.subsystems.SwerveModule;
+import org.usfirst.frc.team1533.robot.subsystems.AbsoluteEncoder;
+import org.usfirst.frc.team1533.robot.subsystems.SwerveDrive;
+import org.usfirst.frc.team1533.robot.subsystems.SwerveModule;
 
 /**
  * The VM is configured to automatically run this class, and to call the

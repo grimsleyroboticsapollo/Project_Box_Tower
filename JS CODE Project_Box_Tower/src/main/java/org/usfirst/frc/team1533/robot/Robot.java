@@ -5,11 +5,11 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.cameraserver.CameraServer;
 
 import org.usfirst.frc.team1533.robot.subsystems.AbsoluteEncoder;
 import org.usfirst.frc.team1533.robot.subsystems.SwerveDrive;
 import org.usfirst.frc.team1533.robot.subsystems.SwerveModule;
+import org.usfirst.frc.team1533.robot.RobotMap;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -79,6 +79,12 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         swerve.driveNormal(joy1.getX()/2, -joy1.getY()/2, joy1.getZ()/2);
+
+        if (joy1.getRawButton(1)) {
+            RobotMap.INTAKE += 1;
+        } else {
+            // Nothing
+        }
     }
     
     

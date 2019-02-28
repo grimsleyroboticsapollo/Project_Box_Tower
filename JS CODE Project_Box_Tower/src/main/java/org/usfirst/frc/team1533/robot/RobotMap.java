@@ -33,4 +33,8 @@ public class RobotMap {
 	public static int FR_ENCODER = 5; // front right
 	public static int BL_ENCODER = 6; // back left
 	public static int BR_ENCODER = 7; // back right
+
+	// Intake Mechanism
+	public static int INTAKE = 0; // Intake Belt Motor
+	public static int CLIMBER = 1; // Climbing Motor
 }

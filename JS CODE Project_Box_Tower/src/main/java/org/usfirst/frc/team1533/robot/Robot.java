@@ -2,6 +2,8 @@
 package org.usfirst.frc.team1533.robot;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.Joystick.ButtonType;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -80,10 +82,31 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
         swerve.driveNormal(joy1.getX()/2, -joy1.getY()/2, joy1.getZ()/2);
 
-        if (joy1.getRawButton(1)) {
+        // Intake Mech. Code
+        
+        // Intake
+        if (joy1.getRawButton(2)) {
             RobotMap.INTAKE += 1;
         } else {
-            // Nothing
+            RobotMap.INTAKE = 0;
+        }
+
+        // Lift
+        if (joy1.getRawButton(7)) {
+            RobotMap.LIFT += 1;
+        } else if (joy1.getRawButton(8)) {
+            RobotMap.LIFT -= 1;
+        } else {
+            RobotMap.LIFT = 0;
+        }
+
+        // Rotation
+        if (joy1.getRawButton(4)) {
+            RobotMap.ROTATE += 1;
+        } else if (joy1.getRawButton(3)) {
+            RobotMap.ROTATE -= 1;
+        } else {
+            RobotMap.ROTATE = 0;
         }
     }
     

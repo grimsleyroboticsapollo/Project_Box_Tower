@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team1533.robot.subsystems.AbsoluteEncoder;
 import org.usfirst.frc.team1533.robot.subsystems.SwerveDrive;
 import org.usfirst.frc.team1533.robot.subsystems.SwerveModule;
-import org.usfirst.frc.team1533.robot.RobotMap;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,7 +22,8 @@ import org.usfirst.frc.team1533.robot.RobotMap;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	public static SwerveDrive swerve;
+    public static SwerveDrive swerve;
+    public static RobotMap motor;
 	
 	Joystick joy1;
 
@@ -80,34 +80,38 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+
+        // Drive Code
         swerve.driveNormal(joy1.getX()/2, -joy1.getY()/2, joy1.getZ()/2);
 
-        // Intake Mech. Code
+        // Box Mechanism Code
         
         // Intake
-        if (joy1.getRawButton(2)) {
-            RobotMap.INTAKE += 1;
-        } else {
-            RobotMap.INTAKE = 0;
+        if (joy1.getRawButton(1)) {
+            motor.INTAKE += 1;
         }
 
         // Lift
         if (joy1.getRawButton(7)) {
-            RobotMap.LIFT += 1;
+            motor.LIFT += 1;
         } else if (joy1.getRawButton(8)) {
-            RobotMap.LIFT -= 1;
+            motor.LIFT -= 1;
         } else {
-            RobotMap.LIFT = 0;
+            motor.LIFT = 0;
         }
 
         // Rotation
         if (joy1.getRawButton(4)) {
-            RobotMap.ROTATE += 1;
+            motor.ROTATE += 1;
         } else if (joy1.getRawButton(3)) {
-            RobotMap.ROTATE -= 1;
+            motor.ROTATE -= 1;
         } else {
-            RobotMap.ROTATE = 0;
+            motor.ROTATE = 0;
         }
+
+
+        // "Climbing"
+        // #TODO Figure Out A Way To Switch From Teleop To Autonomous
     }
     
     

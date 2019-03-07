@@ -40,6 +40,6 @@ public class RobotMap {
 	public static int LIFT = 2; // Box Lift Motor
 
 	// Climbing Mechanism
-	public static int CLIMBER = 3; // Climbing Motor
+	public static int CLIMBER = 3; // "Climbing" Motor
 
 }

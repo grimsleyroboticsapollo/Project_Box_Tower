@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team1533.robot.subsystems.AbsoluteEncoder;
 import org.usfirst.frc.team1533.robot.subsystems.SwerveDrive;
 import org.usfirst.frc.team1533.robot.subsystems.SwerveModule;
+import org.usfirst.frc.team1533.robot.RobotMap;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -23,7 +24,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
     public static SwerveDrive swerve;
-    public static RobotMap motor;
+    public static RobotMap Device;
 	
 	Joystick joy1;
 
@@ -35,7 +36,8 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
-		swerve = new SwerveDrive();
+        swerve = new SwerveDrive();
+        Device = new RobotMap();
 		joy1 = new Joystick(1);
     }
 	
@@ -82,36 +84,36 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
 
         // Drive Code
-        swerve.driveNormal(joy1.getX()/2, -joy1.getY()/2, joy1.getZ()/2);
+            swerve.driveNormal(joy1.getX()/2, -joy1.getY()/2, joy1.getZ()/2);
 
         // Box Mechanism Code
         
-        // Intake
-        if (joy1.getRawButton(1)) {
-            motor.INTAKE += 1;
-        }
+            // Intake
+            if (joy1.getRawButton(1)) {
+                Device.INTAKE += 1;
+            }
 
-        // Lift
-        if (joy1.getRawButton(7)) {
-            motor.LIFT += 1;
-        } else if (joy1.getRawButton(8)) {
-            motor.LIFT -= 1;
-        } else {
-            motor.LIFT = 0;
-        }
+            // Lift
+            if (joy1.getRawButton(7)) {
+                Device.LIFT += 1;
+            } else if (joy1.getRawButton(8)) {
+                Device.LIFT -= 1;
+            } else {
+                Device.LIFT = 0;
+            }
 
-        // Rotation
-        if (joy1.getRawButton(4)) {
-            motor.ROTATE += 1;
-        } else if (joy1.getRawButton(3)) {
-            motor.ROTATE -= 1;
-        } else {
-            motor.ROTATE = 0;
-        }
+            // Rotation
+            if (joy1.getRawButton(4)) {
+                Device.ROTATE += 1;
+            } else if (joy1.getRawButton(3)) {
+            Device.ROTATE -= 1;
+            } else {
+                Device.ROTATE = 0;
+            }
 
 
         // "Climbing"
-        // #TODO Figure Out A Way To Switch From Teleop To Autonomous
+            // #TODO Figure Out A Way To Switch From Teleop To Autonomous
     }
     
     

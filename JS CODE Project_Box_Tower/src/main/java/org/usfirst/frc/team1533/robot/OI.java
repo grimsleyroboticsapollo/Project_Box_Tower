@@ -20,13 +20,13 @@ public class OI {
     // number it is.
     // Joystick stick = new Joystick(port);
     // Button button = new JoystickButton(stick, buttonNumber);
-    Joystick Gamepad_1 = new Joystick(1);
+        Joystick Gamepad_1 = new Joystick(1);
 
-    Button intake = new JoystickButton(Gamepad_1, 1);
-    Button lift_Up = new JoystickButton(Gamepad_1, 4);
-    Button lift_Down = new JoystickButton(Gamepad_1, 3);
-    Button rotate_Foward = new JoystickButton(Gamepad_1, 5);
-    Button rotate_Backward = new JoystickButton(Gamepad_1, 6);
+            Button intake = new JoystickButton(Gamepad_1, 1);
+            Button lift_Up = new JoystickButton(Gamepad_1, 4);
+            Button lift_Down = new JoystickButton(Gamepad_1, 3);
+            Button rotate_Foward = new JoystickButton(Gamepad_1, 5);
+            Button rotate_Backward = new JoystickButton(Gamepad_1, 6);
     // There are a few additional built in buttons you can use. Additionally,
     // by subclassing Button you can create custom triggers and bind those to
     // commands the same as any other Button.

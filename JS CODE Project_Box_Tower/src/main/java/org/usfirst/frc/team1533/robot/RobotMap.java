@@ -17,29 +17,29 @@ public class RobotMap {
     // public static int rangefinderModule = 1;
 
 	// Steering/"Swerve" Motors
-	public static int FL_STEER = 8; // Front Left Steer Motor
-	public static int FR_STEER = 9; // Front Right Steer Motor
-	public static int BL_STEER = 10; // Back Left Steer Motor
-	public static int BR_STEER = 11; // Back Right Steer Motor
+	public static int FL_STEER = 4; // Front Left Steer Motor
+	public static int FR_STEER = 5; // Front Right Steer Motor
+	public static int BL_STEER = 6; // Back Left Steer Motor
+	public static int BR_STEER = 7; // Back Right Steer Motor
 	
 	// Drive Motors
-	public static int FL_DRIVE = 4; // Front Left Motor
-	public static int FR_DRIVE = 5; // Front Right Motor
-	public static int BL_DRIVE = 6; // Back Left Motor
-	public static int BR_DRIVE = 7; // Back Right Motor
+	public static int FL_DRIVE = 0; // Front Left Motor
+	public static int FR_DRIVE = 1; // Front Right Motor
+	public static int BL_DRIVE = 2; // Back Left Motor
+	public static int BR_DRIVE = 3; // Back Right Motor
 
 	// Encoders For Drive Motors
-	public static int FL_ENCODER = 4; // Front Left Encoder
-	public static int FR_ENCODER = 5; // Front Right Encoder
-	public static int BL_ENCODER = 6; // Back Left Encoder
-	public static int BR_ENCODER = 7; // Back Right Encoder
+	public static int FL_ENCODER = 0; // Front Left Encoder
+	public static int FR_ENCODER = 1; // Front Right Encoder
+	public static int BL_ENCODER = 2; // Back Left Encoder
+	public static int BR_ENCODER = 3; // Back Right Encoder
 
 	// Intake Mechanism
-	public static int INTAKE = 0; // Intake Belt Motor
-	public static int ROTATE = 1; // Box Rotation Motor
-	public static int LIFT = 2; // Box Lift Motor
+	public static int INTAKE = 8; // Intake Belt Motor
+	public static int ROTATE = 9; // Box Rotation Motor
+	public static int LIFT = 10; // Box Lift Motor
 
 	// Climbing Mechanism
-	public static int CLIMBER = 3; // "Climbing" Motor
+	public static int CLIMBER = 11; // "Climbing" Motor
 
 }

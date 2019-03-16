@@ -12,6 +12,7 @@ import org.usfirst.frc.team1533.robot.subsystems.AbsoluteEncoder;
 import org.usfirst.frc.team1533.robot.subsystems.SwerveDrive;
 import org.usfirst.frc.team1533.robot.subsystems.SwerveModule;
 import org.usfirst.frc.team1533.robot.RobotMap;
+import org.usfirst.frc.team1533.robot.OI;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,7 +27,7 @@ public class Robot extends IterativeRobot {
     public static SwerveDrive swerve;
     public static RobotMap Device;
 	
-	Joystick joy1;
+	//Joystick joy1;
 
     Command autonomousCommand;
 
@@ -38,7 +39,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
         swerve = new SwerveDrive();
         Device = new RobotMap();
-		joy1 = new Joystick(1);
+		//joy1 = new Joystick(0);
     }
 	
 	public void disabledPeriodic() {
@@ -84,11 +85,12 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
 
         // Drive Code
-            swerve.driveNormal(joy1.getX()/2, -joy1.getY()/2, joy1.getZ()/2);
+        // swerve.driveNormal(joy1.getX()/2, -joy1.getY()/2, joy1.getZ()/2);
+        swerve.driveNormal(OI.getGamepad().getX()/2, OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
 
         // Box Mechanism Code
         
-            // Intake
+            /* Intake
             if (joy1.getRawButton(1)) {
                 Device.INTAKE += 1;
             }
@@ -114,6 +116,7 @@ public class Robot extends IterativeRobot {
 
         // "Climbing"
             // #TODO Figure Out A Way To Switch From Teleop To Autonomous
+            */
     }
     
     

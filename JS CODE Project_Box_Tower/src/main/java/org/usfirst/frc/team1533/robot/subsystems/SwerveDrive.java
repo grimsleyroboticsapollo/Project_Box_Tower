@@ -1,9 +1,13 @@
 package org.usfirst.frc.team1533.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import org.usfirst.frc.team1533.robot.Constants;
 import org.usfirst.frc.team1533.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -22,29 +26,29 @@ public class SwerveDrive extends Subsystem {
 		//array can be any size, as long as the position of each module is specified in its constructor
 		modules = new SwerveModule[] {
 			//front left
-			new SwerveModule(new Talon(RobotMap.FL_DRIVE),
-					new Talon(RobotMap.FL_STEER),
+			new SwerveModule(new WPI_TalonSRX(RobotMap.FL_DRIVE),
+					new WPI_VictorSPX(RobotMap.FL_STEER),
 					new AbsoluteEncoder(RobotMap.FL_ENCODER, Constants.FL_ENC_OFFSET),
 					-Constants.WHEEL_BASE_WIDTH/2,
 					Constants.WHEEL_BASE_LENGTH/2
 					),
 			//front right
-			new SwerveModule(new Talon(RobotMap.FR_DRIVE), 
-					new Talon(RobotMap.FR_STEER),
+			new SwerveModule(new WPI_TalonSRX(RobotMap.FR_DRIVE), 
+					new WPI_VictorSPX(RobotMap.FR_STEER),
 					new AbsoluteEncoder(RobotMap.FR_ENCODER, Constants.FR_ENC_OFFSET),
 					Constants.WHEEL_BASE_WIDTH/2,
 					Constants.WHEEL_BASE_LENGTH/2
 					),
 			//back left
-			new SwerveModule(new Talon(RobotMap.BL_DRIVE),
-					new Talon(RobotMap.BL_STEER),
+			new SwerveModule(new WPI_TalonSRX(RobotMap.BL_DRIVE),
+					new WPI_VictorSPX(RobotMap.BL_STEER),
 					new AbsoluteEncoder(RobotMap.BL_ENCODER, Constants.BL_ENC_OFFSET),
 					-Constants.WHEEL_BASE_WIDTH/2,
 					-Constants.WHEEL_BASE_LENGTH/2
 					),
 			//back right
-			new SwerveModule(new Talon(RobotMap.BR_DRIVE), 
-					new Talon(RobotMap.BR_STEER),
+			new SwerveModule(new WPI_TalonSRX(RobotMap.BR_DRIVE), 
+					new WPI_VictorSPX(RobotMap.BR_STEER),
 					new AbsoluteEncoder(RobotMap.BR_ENCODER, Constants.BR_ENC_OFFSET),
 					Constants.WHEEL_BASE_WIDTH/2,
 					-Constants.WHEEL_BASE_LENGTH/2

@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class SwerveDrive extends Subsystem {
 	double pivotX, pivotY;
-	SwerveModule[] modules;
+	public SwerveModule[] modules;
 	
 	/**
 	 * Custom constructor for current robot.

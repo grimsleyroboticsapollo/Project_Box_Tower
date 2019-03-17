@@ -1,12 +1,15 @@
 
 package org.usfirst.frc.team1533.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.Joystick.ButtonType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team1533.robot.subsystems.AbsoluteEncoder;
 import org.usfirst.frc.team1533.robot.subsystems.SwerveDrive;
@@ -26,8 +29,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
     public static SwerveDrive swerve;
     public static RobotMap Device;
-	
-	//Joystick joy1;
+	public static UsbCamera mrSandCam;
 
     Command autonomousCommand;
 
@@ -39,7 +41,19 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
         swerve = new SwerveDrive();
         Device = new RobotMap();
-		//joy1 = new Joystick(0);
+        mrSandCam = CameraServer.getInstance().startAutomaticCapture(0);
+    }
+
+    public void robotPeriodic() {
+            // Dashboard Stuff
+        //SmartDashboard.putNumber("FL", Math.toDegrees(swerve.modules[0].steerEncoder.getAngle()));
+        //SmartDashboard.putNumber("FR", Math.toDegrees(swerve.modules[1].steerEncoder.getAngle()));
+        //SmartDashboard.putNumber("BL", Math.toDegrees(swerve.modules[2].steerEncoder.getAngle()));
+        //SmartDashboard.putNumber("BR", Math.toDegrees(swerve.modules[3].steerEncoder.getAngle()));
+        // SmartDashboard.putNumber("FL", swerve.modules[0].steerEncoder.getAverageVoltage());
+        // SmartDashboard.putNumber("FR", swerve.modules[1].steerEncoder.getAverageVoltage());
+        // SmartDashboard.putNumber("BL", swerve.modules[2].steerEncoder.getAverageVoltage());
+        // SmartDashboard.putNumber("BR", swerve.modules[3].steerEncoder.getAverageVoltage());
     }
 	
 	public void disabledPeriodic() {
@@ -86,7 +100,7 @@ public class Robot extends IterativeRobot {
 
         // Drive Code
         // swerve.driveNormal(joy1.getX()/2, -joy1.getY()/2, joy1.getZ()/2);
-        swerve.driveNormal(OI.getGamepad().getX()/2, OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
+        swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
 
         // Box Mechanism Code
         

@@ -28,7 +28,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
     public static SwerveDrive swerve;
-    public static RobotMap Device;
+    public static RobotMap device;
 	public static UsbCamera mrSandCam;
 
     Command autonomousCommand;
@@ -40,12 +40,14 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
         swerve = new SwerveDrive();
-        Device = new RobotMap();
+        device = new RobotMap();
         mrSandCam = CameraServer.getInstance().startAutomaticCapture(0);
+        mrSandCam.setResolution(520, 360);
+        mrSandCam.setFPS(30);
     }
 
     public void robotPeriodic() {
-            // Dashboard Stuff
+            // Dashboard/Debug Stuff
         //SmartDashboard.putNumber("FL", Math.toDegrees(swerve.modules[0].steerEncoder.getAngle()));
         //SmartDashboard.putNumber("FR", Math.toDegrees(swerve.modules[1].steerEncoder.getAngle()));
         //SmartDashboard.putNumber("BL", Math.toDegrees(swerve.modules[2].steerEncoder.getAngle()));
@@ -63,7 +65,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
-        	//swerve.enable();
+        swerve.enable();
         	
         	
     }
@@ -73,6 +75,9 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+
+        // Drive Code
+        swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
     }
 
     public void teleopInit() {
@@ -104,33 +109,35 @@ public class Robot extends IterativeRobot {
 
         // Box Mechanism Code
         
-            /* Intake
-            if (joy1.getRawButton(1)) {
-                Device.INTAKE += 1;
+             /*Intake
+            if (OI.getGamepad().getRawButton(1)) {
+                RobotMap.INTAKE += 1;
             }
+            */
 
             // Lift
-            if (joy1.getRawButton(7)) {
-                Device.LIFT += 1;
-            } else if (joy1.getRawButton(8)) {
-                Device.LIFT -= 1;
+            if (OI.getGamepad().getRawButton(7)) {
+                RobotMap.LIFT += 1;
+            } else if (OI.getGamepad().getRawButton(8)) {
+                RobotMap.LIFT -= 1;
             } else {
-                Device.LIFT = 0;
+                RobotMap.LIFT = 0;
             }
 
-            // Rotation
-            if (joy1.getRawButton(4)) {
-                Device.ROTATE += 1;
-            } else if (joy1.getRawButton(3)) {
-            Device.ROTATE -= 1;
+            /* Rotation
+            if (OI.getGamepad().getRawButton(4)) {
+                RobotMap.ROTATE += 1;
+            } else if (OI.getGamepad().getRawButton(3)) {
+                RobotMap.ROTATE -= 1;
             } else {
-                Device.ROTATE = 0;
+                RobotMap.ROTATE = 0;
             }
-
-
-        // "Climbing"
-            // #TODO Figure Out A Way To Switch From Teleop To Autonomous
             */
+
+
+        // "Climbing" Code
+            // #TODO Figure Out Something For Climbing
+            
     }
     
     

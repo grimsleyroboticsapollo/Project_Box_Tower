@@ -37,7 +37,7 @@ public class RobotMap {
 	// Intake Mechanism
 	//public static int INTAKE = ;  Intake Belt Motor
 	//public static int ROTATE = ;  Box Rotation Motor
-	//public static int LIFT = ;  Box Lift Motor
+	public static int LIFT = 9;  // Box Lift Motor
 
 	// Climbing Mechanism
 	//public static int CLIMBER = ;  "Climbing" Motor

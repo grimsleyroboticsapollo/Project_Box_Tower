@@ -35,11 +35,7 @@ public class RobotMap {
 	public static int BR_ENCODER = 3; // Back Right Encoder
 
 	// Intake Mechanism
-	//public static int INTAKE = ;  Intake Belt Motor
-	//public static int ROTATE = ;  Box Rotation Motor
+	public static int INTAKE = 8;  //Intake Belt Motor
+	public static int ROTATE = 10;  //Box Rotation Motor
 	public static int LIFT = 9;  // Box Lift Motor
-
-	// Climbing Mechanism
-	//public static int CLIMBER = ;  "Climbing" Motor
-
 }

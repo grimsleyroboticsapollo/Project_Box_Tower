@@ -26,11 +26,14 @@ public class OI {
             return Gamepad_1;
         }
 
-        Button intake = new JoystickButton(Gamepad_1, 1);
-        Button lift_Up = new JoystickButton(Gamepad_1, 4);
-        Button lift_Down = new JoystickButton(Gamepad_1, 3);
-        Button rotate_Foward = new JoystickButton(Gamepad_1, 5);
-        Button rotate_Backward = new JoystickButton(Gamepad_1, 6);
+        Button intake = new JoystickButton(Gamepad_1, 1); // Intake Button (X)
+        Button outtake = new JoystickButton(Gamepad_1, 2); // Outtake Button (A)
+        Button lift_Down = new JoystickButton(Gamepad_1, 3); // Lower Box Button (Y)
+        Button lift_Up = new JoystickButton(Gamepad_1, 4); // Lift Box Up Button (B)
+        Button rotate_Foward = new JoystickButton(Gamepad_1, 5); // Rotate Box Foward Button (LB)
+        Button rotate_Backward = new JoystickButton(Gamepad_1, 6); // Rotate Box Backward Button (RB)
+        //Button slow = new JoystickButton(Gamepad_1, 9); // Go Slower Button (BACK)
+        //Button fast = new JoystickButton(Gamepad_1, 10); // Go Faster "Ludicrous Speed" Button (START)
         
     // There are a few additional built in buttons you can use. Additionally,
     // by subclassing Button you can create custom triggers and bind those to

@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team1533.robot;
 
 import edu.wpi.cscore.UsbCamera;
@@ -38,24 +37,27 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI();
-        swerve = new SwerveDrive();
-        device = new RobotMap();
-        mrSandCam = CameraServer.getInstance().startAutomaticCapture(0);
-        mrSandCam.setResolution(520, 360);
-        mrSandCam.setFPS(30);
+        // Init. All Devices
+		    oi = new OI();
+            swerve = new SwerveDrive();
+            device = new RobotMap();
+            mrSandCam = CameraServer.getInstance().startAutomaticCapture(0);
+            mrSandCam.setResolution(520, 360);
+            mrSandCam.setFPS(30);
     }
 
     public void robotPeriodic() {
-            // Dashboard/Debug Stuff
-        //SmartDashboard.putNumber("FL", Math.toDegrees(swerve.modules[0].steerEncoder.getAngle()));
-        //SmartDashboard.putNumber("FR", Math.toDegrees(swerve.modules[1].steerEncoder.getAngle()));
-        //SmartDashboard.putNumber("BL", Math.toDegrees(swerve.modules[2].steerEncoder.getAngle()));
-        //SmartDashboard.putNumber("BR", Math.toDegrees(swerve.modules[3].steerEncoder.getAngle()));
-        // SmartDashboard.putNumber("FL", swerve.modules[0].steerEncoder.getAverageVoltage());
-        // SmartDashboard.putNumber("FR", swerve.modules[1].steerEncoder.getAverageVoltage());
-        // SmartDashboard.putNumber("BL", swerve.modules[2].steerEncoder.getAverageVoltage());
-        // SmartDashboard.putNumber("BR", swerve.modules[3].steerEncoder.getAverageVoltage());
+        // Dashboard/Debug Stuff
+            SmartDashboard.putNumber("Mr. SandCam's Data Rate", Math.toDegrees(mrSandCam.getActualDataRate()));
+            SmartDashboard.putNumber("Mr. SandCam's Frame Rate", Math.toDegrees(mrSandCam.getActualFPS()));
+            //SmartDashboard.putNumber("FL", Math.toDegrees(swerve.modules[0].steerEncoder.getAngle()));
+            //SmartDashboard.putNumber("FR", Math.toDegrees(swerve.modules[1].steerEncoder.getAngle()));
+            //SmartDashboard.putNumber("BL", Math.toDegrees(swerve.modules[2].steerEncoder.getAngle()));
+            //SmartDashboard.putNumber("BR", Math.toDegrees(swerve.modules[3].steerEncoder.getAngle()));
+            //SmartDashboard.putNumber("FL", swerve.modules[0].steerEncoder.getAverageVoltage());
+            //SmartDashboard.putNumber("FR", swerve.modules[1].steerEncoder.getAverageVoltage());
+            //SmartDashboard.putNumber("BL", swerve.modules[2].steerEncoder.getAverageVoltage());
+            //SmartDashboard.putNumber("BR", swerve.modules[3].steerEncoder.getAverageVoltage());
     }
 	
 	public void disabledPeriodic() {
@@ -77,7 +79,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
 
         // Drive Code
-        swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
+            swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
     }
 
     public void teleopInit() {
@@ -104,40 +106,57 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
 
         // Drive Code
-        // swerve.driveNormal(joy1.getX()/2, -joy1.getY()/2, joy1.getZ()/2);
-        swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
-
-        // Box Mechanism Code
-        
-             /*Intake
-            if (OI.getGamepad().getRawButton(1)) {
-                RobotMap.INTAKE += 1;
+            // Normal Mode
+            swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
+            //#TODO Do We Even Need This?
+            /* Fast Mode
+            if (OI.getGamepad().getRawButton(7)) {
+                swerve.driveNormal(OI.getGamepad().getX()/1, -OI.getGamepad().getY()/1, OI.getGamepad().getZ()/1);
+            } else {
+                swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
+            }
+            // Slow Mode
+            if (OI.getGamepad().getRawButton(8)) {
+                swerve.driveNormal(OI.getGamepad().getX()/4, -OI.getGamepad().getY()/4, OI.getGamepad().getZ()/4);
+            } else {
+                swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
             }
             */
 
+
+        // Box Mechanism Code
+        
+            // Intake
+            if (OI.getGamepad().getRawButton(1)) {
+                RobotMap.INTAKE += 1;
+            } else {
+                RobotMap.INTAKE = 0;
+            }
+
+            if (OI.getGamepad().getRawButton(2)) {
+                RobotMap.INTAKE -= 1;
+            } else {
+                RobotMap.INTAKE = 0;
+            }
+
             // Lift
-            if (OI.getGamepad().getRawButton(7)) {
+            if (OI.getGamepad().getRawButton(5)) {
                 RobotMap.LIFT += 1;
-            } else if (OI.getGamepad().getRawButton(8)) {
+            } else if (OI.getGamepad().getRawButton(6)) {
                 RobotMap.LIFT -= 1;
             } else {
                 RobotMap.LIFT = 0;
             }
 
-            /* Rotation
-            if (OI.getGamepad().getRawButton(4)) {
+            // Rotate
+            if (OI.getGamepad().getRawButton(3)) {
                 RobotMap.ROTATE += 1;
-            } else if (OI.getGamepad().getRawButton(3)) {
+            } else if (OI.getGamepad().getRawButton(4)) {
                 RobotMap.ROTATE -= 1;
             } else {
                 RobotMap.ROTATE = 0;
             }
-            */
-
-
-        // "Climbing" Code
-            // #TODO Figure Out Something For Climbing
-            
+                     
     }
     
     

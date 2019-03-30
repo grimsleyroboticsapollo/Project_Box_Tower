@@ -3,6 +3,7 @@ package org.usfirst.frc.team1533.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick.ButtonType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Command;
@@ -48,8 +49,6 @@ public class Robot extends IterativeRobot {
 
     public void robotPeriodic() {
         // Dashboard/Debug Stuff
-            SmartDashboard.putNumber("Mr. SandCam's Data Rate", Math.toDegrees(mrSandCam.getActualDataRate()));
-            SmartDashboard.putNumber("Mr. SandCam's Frame Rate", Math.toDegrees(mrSandCam.getActualFPS()));
             //SmartDashboard.putNumber("FL", Math.toDegrees(swerve.modules[0].steerEncoder.getAngle()));
             //SmartDashboard.putNumber("FR", Math.toDegrees(swerve.modules[1].steerEncoder.getAngle()));
             //SmartDashboard.putNumber("BL", Math.toDegrees(swerve.modules[2].steerEncoder.getAngle()));
@@ -142,8 +141,10 @@ public class Robot extends IterativeRobot {
             // Lift
             if (OI.getGamepad().getRawButton(5)) {
                 RobotMap.LIFT += 1;
+                OI.getGamepad().setRumble(RumbleType.kLeftRumble, 1);
             } else if (OI.getGamepad().getRawButton(6)) {
                 RobotMap.LIFT -= 1;
+                OI.getGamepad().setRumble(RumbleType.kRightRumble, 1);
             } else {
                 RobotMap.LIFT = 0;
             }

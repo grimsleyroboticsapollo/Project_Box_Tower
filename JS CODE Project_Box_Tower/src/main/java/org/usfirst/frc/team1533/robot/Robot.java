@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
     public static SwerveDrive swerve;
     public static RobotMap device;
-	public static UsbCamera mrSandCam;
+    public static UsbCamera mrSandCam;
 
     Command autonomousCommand;
 
@@ -49,10 +49,10 @@ public class Robot extends IterativeRobot {
 
     public void robotPeriodic() {
         // Dashboard/Debug Stuff
-            //SmartDashboard.putNumber("FL", Math.toDegrees(swerve.modules[0].steerEncoder.getAngle()));
-            //SmartDashboard.putNumber("FR", Math.toDegrees(swerve.modules[1].steerEncoder.getAngle()));
-            //SmartDashboard.putNumber("BL", Math.toDegrees(swerve.modules[2].steerEncoder.getAngle()));
-            //SmartDashboard.putNumber("BR", Math.toDegrees(swerve.modules[3].steerEncoder.getAngle()));
+            SmartDashboard.putNumber("FL", Math.toDegrees(swerve.modules[0].steerEncoder.getAngle()));
+            SmartDashboard.putNumber("FR", Math.toDegrees(swerve.modules[1].steerEncoder.getAngle()));
+            SmartDashboard.putNumber("BL", Math.toDegrees(swerve.modules[2].steerEncoder.getAngle()));
+            SmartDashboard.putNumber("BR", Math.toDegrees(swerve.modules[3].steerEncoder.getAngle()));
             //SmartDashboard.putNumber("FL", swerve.modules[0].steerEncoder.getAverageVoltage());
             //SmartDashboard.putNumber("FR", swerve.modules[1].steerEncoder.getAverageVoltage());
             //SmartDashboard.putNumber("BL", swerve.modules[2].steerEncoder.getAverageVoltage());
@@ -78,7 +78,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
 
         // Drive Code
-            swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
+            swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);            
     }
 
     public void teleopInit() {
@@ -105,23 +105,8 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().run();
 
         // Drive Code
-            // Normal Mode
-            swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
-            //#TODO Do We Even Need This?
-            /* Fast Mode
-            if (OI.getGamepad().getRawButton(7)) {
-                swerve.driveNormal(OI.getGamepad().getX()/1, -OI.getGamepad().getY()/1, OI.getGamepad().getZ()/1);
-            } else {
-                swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
-            }
-            // Slow Mode
-            if (OI.getGamepad().getRawButton(8)) {
-                swerve.driveNormal(OI.getGamepad().getX()/4, -OI.getGamepad().getY()/4, OI.getGamepad().getZ()/4);
-            } else {
-                swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
-            }
-            */
-
+            swerve.driveNormal(OI.getGamepad().getX(), -OI.getGamepad().getY(), OI.getGamepad().getZ());
+            //swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
 
         // Box Mechanism Code
         

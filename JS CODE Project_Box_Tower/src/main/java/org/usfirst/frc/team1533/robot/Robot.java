@@ -15,6 +15,11 @@ import org.usfirst.frc.team1533.robot.subsystems.AbsoluteEncoder;
 import org.usfirst.frc.team1533.robot.subsystems.SwerveDrive;
 import org.usfirst.frc.team1533.robot.subsystems.SwerveModule;
 import org.usfirst.frc.team1533.robot.RobotMap;
+import edu.wpi.first.wpilibj.VictorSP;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import org.usfirst.frc.team1533.robot.OI;
 
 /**
@@ -30,6 +35,9 @@ public class Robot extends IterativeRobot {
     public static SwerveDrive swerve;
     public static RobotMap device;
     public static UsbCamera mrSandCam;
+    VictorSPX INTAKE = new VictorSPX(8);
+    VictorSPX LIFT = new VictorSPX(9);
+    VictorSPX ROTATE = new VictorSPX(10);
 
     Command autonomousCommand;
 
@@ -45,6 +53,9 @@ public class Robot extends IterativeRobot {
             mrSandCam = CameraServer.getInstance().startAutomaticCapture(0);
             mrSandCam.setResolution(520, 360);
             mrSandCam.setFPS(30);
+            INTAKE.set(ControlMode.PercentOutput, 0);
+            LIFT.set(ControlMode.PercentOutput, 0);
+            ROTATE.set(ControlMode.PercentOutput, 0);
     }
 
     public void robotPeriodic() {
@@ -77,6 +88,10 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
 
+        // Set Camera Quality To Normal Conditions
+        mrSandCam.setResolution(520, 360);
+        mrSandCam.setFPS(30);
+
         // Drive Code
             swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);            
     }
@@ -103,44 +118,44 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        
+        // Lower Camera Quality Once Teleop Starts
+            mrSandCam.setResolution(1, 1);
+            mrSandCam.setFPS(1);
 
         // Drive Code
             swerve.driveNormal(OI.getGamepad().getX(), -OI.getGamepad().getY(), OI.getGamepad().getZ());
             //swerve.driveNormal(OI.getGamepad().getX()/2, -OI.getGamepad().getY()/2, OI.getGamepad().getZ()/2);
 
         // Box Mechanism Code
-        
+    
             // Intake
             if (OI.getGamepad().getRawButton(1)) {
-                RobotMap.INTAKE += 1;
+                INTAKE.set(ControlMode.PercentOutput, 1);
+            } else if (OI.getGamepad().getRawButton(2)){
+                INTAKE.set(ControlMode.PercentOutput, -1);
             } else {
-                RobotMap.INTAKE = 0;
-            }
-
-            if (OI.getGamepad().getRawButton(2)) {
-                RobotMap.INTAKE -= 1;
-            } else {
-                RobotMap.INTAKE = 0;
+                INTAKE.set(ControlMode.PercentOutput, 0);
             }
 
             // Lift
             if (OI.getGamepad().getRawButton(5)) {
-                RobotMap.LIFT += 1;
+                LIFT.set(ControlMode.PercentOutput, 1);
                 OI.getGamepad().setRumble(RumbleType.kLeftRumble, 1);
             } else if (OI.getGamepad().getRawButton(6)) {
-                RobotMap.LIFT -= 1;
+                LIFT.set(ControlMode.PercentOutput, -1);
                 OI.getGamepad().setRumble(RumbleType.kRightRumble, 1);
             } else {
-                RobotMap.LIFT = 0;
+                LIFT.set(ControlMode.PercentOutput, 0);
             }
 
             // Rotate
             if (OI.getGamepad().getRawButton(3)) {
-                RobotMap.ROTATE += 1;
+                ROTATE.set(ControlMode.PercentOutput, 1);
             } else if (OI.getGamepad().getRawButton(4)) {
-                RobotMap.ROTATE -= 1;
+                ROTATE.set(ControlMode.PercentOutput, -1);
             } else {
-                RobotMap.ROTATE = 0;
+                ROTATE.set(ControlMode.PercentOutput, 0);
             }
                      
     }
